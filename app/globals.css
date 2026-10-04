@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+/* Graph-paper notebook: cool paper, navy ink, one highlighter yellow. */
+@theme {
+  --color-paper: #f6f8fa;
+  --color-grid: #d9e3ec;
+  --color-rule: #c4d1de;
+  --color-ink: #142a4c;
+  --color-ink-soft: #4a5b73;
+  --color-marker: #ffe14d;
+  --color-marker-deep: #f2c200;
+  --font-sans: "Zen Kaku Gothic New", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  --font-display: "Dela Gothic One", "Hiragino Sans", sans-serif;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "palt";
+  line-height: 1.8;
+}
+
+/* The 6mm grid of a 方眼 notebook, used only behind the opening section. */
+.graph-paper {
+  background-color: #fff;
+  background-image:
+    linear-gradient(var(--color-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: -1px -1px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-ink);
+  outline-offset: 3px;
+}
