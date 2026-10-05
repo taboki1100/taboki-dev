@@ -81,5 +81,6 @@ export const practices: Step[] = [
 ];
 
 /** A few lines about the developer. Left empty until written; the section hides it. */
-// TODO(taboki): 経歴を書く（例: 経験年数、これまで関わった業種・システム）。
-export const career: string[] = [];
+export const career: string[] = [
+  "メガベンチャーでSRE（サイト信頼性エンジニア）の経験があります。止まらない・遅くならない・安全に変更できるシステムづくりを、小さな案件にも持ち込みます。",
+];

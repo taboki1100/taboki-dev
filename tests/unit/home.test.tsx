@@ -37,3 +37,9 @@ it("opens the Google Form in a new tab, or says the form is not ready", () => {
   expect(screen.getByText("相談フォームは準備中です")).toBeInTheDocument();
   expect(screen.queryByRole("link")).not.toBeInTheDocument();
 });
+
+it("shows the career note in the skills section", () => {
+  render(<Home />);
+
+  expect(within(screen.getByRole("region", { name: "技術と進め方" })).getByText(/メガベンチャーでSRE/)).toBeInTheDocument();
+});
