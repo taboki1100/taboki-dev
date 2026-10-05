@@ -41,53 +41,6 @@ export const services: Service[] = [
   },
 ];
 
-export type Work = {
-  name: string;
-  summary: string;
-  points: string[];
-  stack: string[];
-  /** Public URL, or null while it is not published yet. */
-  url: string | null;
-};
-
-export const works: Work[] = [
-  {
-    name: "道の駅訪問記録",
-    summary: "全国1,200以上の道の駅を地図と一覧で探し、訪問日・評価・メモを記録できるアプリ。",
-    points: ["都道府県ごとの達成率と地図の塗り分け", "公開・非公開を選べるプロフィール", "国のデータからの駅情報の取り込み"],
-    stack: ["Next.js", "Supabase", "Leaflet"],
-    url: "https://michinoeki-log-ten.vercel.app",
-  },
-  {
-    name: "水族館訪問記録",
-    summary: "全国125館の水族館を探して、訪問の記録を残せるアプリ。",
-    points: ["公開データから施設一覧を作成・検証", "ほかの人の評価・公開メモの閲覧"],
-    stack: ["Next.js", "Supabase", "Leaflet"],
-    url: "https://suizokukan-log.vercel.app",
-  },
-  {
-    name: "駅訪問記録",
-    summary: "全国約9,000の鉄道駅を、路線・鉄道会社・都道府県ごとの達成率つきで記録できるアプリ。",
-    points: ["約9,000駅を地図と一覧で軽快に表示", "国土数値情報から駅・路線を変換して取り込み"],
-    stack: ["Next.js", "Supabase", "Leaflet"],
-    url: null,
-  },
-  {
-    name: "16タイプQ&A",
-    summary: "性格の16タイプを登録したユーザー同士が、質問・回答・コメントで語り合うQ&Aサービス。",
-    points: ["タイプ別の集計と絞り込み", "通報と管理者による非表示", "投稿数の上限"],
-    stack: ["Next.js", "Supabase"],
-    url: null,
-  },
-  {
-    name: "タスクログ",
-    summary: "自分のタスクと共有プロジェクトを、リスト・カンバン・カレンダーで管理するアプリ。",
-    points: ["招待リンクでのメンバー共有と権限", "繰り返しタスク", "キーボードでも動かせるカンバン"],
-    stack: ["Next.js", "Supabase", "dnd-kit"],
-    url: null,
-  },
-];
-
 export type Price = { item: string; price: string; note: string };
 
 // TODO(taboki): 金額は仮置きです。公開前に確認してください。
@@ -119,7 +72,7 @@ export const skills: SkillGroup[] = [
   { area: "品質", items: ["自動テスト（Vitest・Playwright・pgTAP）", "アクセシビリティ確認", "セキュリティ設計"] },
 ];
 
-/** How work is done, as shown in every project above. */
+/** How the work is done. */
 export const practices: Step[] = [
   { title: "先に設計書を書く", body: "作るもの・作らないものを文章にして、認識を合わせてから作り始めます。" },
   { title: "テストを書いてから作る", body: "画面・DB・操作の流れを自動テストで確かめ、変更のたびに全部を流します。" },
