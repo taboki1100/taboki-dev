@@ -16,6 +16,24 @@ export const site = {
     "予約・在庫・顧客管理などの業務ツール、ホームページ、既存システムの改修・保守を個人で請け負っています。設計からテスト、公開、保守まで一人で担当します。",
 };
 
+export type Strength = { title: string; body: string };
+
+/** Why a one-person developer: the selling points shown under the opening. */
+export const strengths: Strength[] = [
+  {
+    title: "圧倒的なスピード",
+    body: "相談する相手と作る人が同じなので、伝言や社内調整がありません。ヒアリングの翌週には動く画面を見ていただけます。",
+  },
+  {
+    title: "圧倒的なコスト",
+    body: "営業・管理の人件費やオフィス代の上乗せがありません。開発会社に頼むより、同じ内容をずっと抑えた費用で作れます。",
+  },
+  {
+    title: "本業レベルの品質",
+    body: "メガベンチャーでSRE・バックエンドエンジニアとして働く現役エンジニアが、設計からテスト、公開後の保守まで担当します。",
+  },
+];
+
 export type Service = { title: string; body: string; examples: string[] };
 
 export const services: Service[] = [
@@ -82,5 +100,5 @@ export const practices: Step[] = [
 
 /** A few lines about the developer. Left empty until written; the section hides it. */
 export const career: string[] = [
-  "メガベンチャーでSRE（サイト信頼性エンジニア）の経験があります。止まらない・遅くならない・安全に変更できるシステムづくりを、小さな案件にも持ち込みます。",
+  "メガベンチャーでSRE・バックエンドエンジニアとして働いています。大規模なサービスを止めずに動かし続けるための設計・監視・障害対応の知見を、小さな案件にもそのまま持ち込みます。",
 ];

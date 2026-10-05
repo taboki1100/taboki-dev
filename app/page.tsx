@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { ContactButton } from "@/components/contact-button";
-import { career, contact, practices, prices, services, site, skills, steps } from "@/lib/content";
+import { career, contact, practices, prices, services, site, skills, steps, strengths } from "@/lib/content";
 
 const NAV = [
   ["#services", "できること"],
@@ -57,7 +57,7 @@ export default function Home() {
                 ひとりで作ります。
               </h1>
               <p className="mt-6 max-w-xl text-lg">
-                個人で開発を請け負っている taboki です。予約・在庫・顧客管理などの業務ツールから、ホームページ、動いているシステムの改修まで、設計からテスト、公開、保守まで一人で担当します。
+                メガベンチャーでSRE・バックエンドエンジニアをしている taboki です。予約・在庫・顧客管理などの業務ツールから、ホームページ、動いているシステムの改修まで。個人だからこそのスピードと費用で、設計から公開、保守まで一人で担当します。
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
                 <ContactButton />
@@ -68,6 +68,22 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        <section aria-labelledby="strengths-heading" className="border-b border-rule bg-ink text-white">
+          <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6">
+            <h2 id="strengths-heading" className="font-display text-3xl leading-tight sm:text-4xl">
+              個人だから、速くて安い。
+            </h2>
+            <ul className="mt-10 grid gap-x-10 gap-y-8 md:grid-cols-3">
+              {strengths.map((strength) => (
+                <li key={strength.title} className="border-t-4 border-marker pt-4">
+                  <h3 className="text-xl font-bold text-marker">{strength.title}</h3>
+                  <p className="mt-2 text-white/90">{strength.body}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
 
         <Section id="services" title="できること">
           <ul className="grid gap-x-10 gap-y-12 sm:grid-cols-2">

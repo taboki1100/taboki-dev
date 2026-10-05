@@ -9,6 +9,7 @@ it("has a heading for every section in page order", () => {
 
   expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("小さな業務のシステム、ひとりで作ります。");
   expect(screen.getAllByRole("heading", { level: 2 }).map((heading) => heading.textContent)).toEqual([
+    "個人だから、速くて安い。",
     "できること",
     "料金の目安",
     "依頼の流れ",
@@ -41,5 +42,16 @@ it("opens the Google Form in a new tab, or says the form is not ready", () => {
 it("shows the career note in the skills section", () => {
   render(<Home />);
 
-  expect(within(screen.getByRole("region", { name: "技術と進め方" })).getByText(/メガベンチャーでSRE/)).toBeInTheDocument();
+  expect(within(screen.getByRole("region", { name: "技術と進め方" })).getByText(/メガベンチャーでSRE・バックエンドエンジニア/)).toBeInTheDocument();
+});
+
+it("leads with speed and cost", () => {
+  render(<Home />);
+
+  const strengths = screen.getByRole("region", { name: "個人だから、速くて安い。" });
+  expect(within(strengths).getAllByRole("heading", { level: 3 }).map((heading) => heading.textContent)).toEqual([
+    "圧倒的なスピード",
+    "圧倒的なコスト",
+    "本業レベルの品質",
+  ]);
 });
