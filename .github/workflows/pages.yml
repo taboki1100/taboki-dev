@@ -30,9 +30,15 @@ jobs:
         #   CONTACT_FORM_URL  the Google Form link
         #   SITE_URL          only with a custom domain, e.g. https://taboki.dev
         env:
-          NEXT_PUBLIC_CONTACT_FORM_URL: ${{ vars.CONTACT_FORM_URL }}
+          # A repository secret of the same name works too.
+          NEXT_PUBLIC_CONTACT_FORM_URL: ${{ vars.CONTACT_FORM_URL || secrets.CONTACT_FORM_URL }}
           SITE_URL: ${{ vars.SITE_URL }}
         run: |
+          if [ -n "$NEXT_PUBLIC_CONTACT_FORM_URL" ]; then
+            echo "::notice title=Contact form::CONTACT_FORM_URL is set; the 相談する buttons link to the form."
+          else
+            echo "::warning title=Contact form::CONTACT_FORM_URL is not set (Settings → Secrets and variables → Actions → Variables); the buttons say the form is not ready."
+          fi
           if [ -n "$SITE_URL" ]; then
             export NEXT_PUBLIC_SITE_URL="$SITE_URL" PAGES_BASE_PATH=""
           else
