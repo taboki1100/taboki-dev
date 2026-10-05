@@ -1,0 +1,58 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Build
+        # Repository variables (Settings → Secrets and variables → Actions → Variables):
+        #   CONTACT_FORM_URL  the Google Form link
+        #   SITE_URL          only with a custom domain, e.g. https://taboki.dev
+        env:
+          NEXT_PUBLIC_CONTACT_FORM_URL: ${{ vars.CONTACT_FORM_URL }}
+          SITE_URL: ${{ vars.SITE_URL }}
+        run: |
+          if [ -n "$SITE_URL" ]; then
+            export NEXT_PUBLIC_SITE_URL="$SITE_URL" PAGES_BASE_PATH=""
+          else
+            export NEXT_PUBLIC_SITE_URL="https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}" PAGES_BASE_PATH="/${GITHUB_REPOSITORY#*/}"
+          fi
+          npm run build
+          # Assets must load from the base path, or the page renders unstyled.
+          grep -q "src=\"${PAGES_BASE_PATH}/_next/" out/index.html
+          touch out/.nojekyll
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

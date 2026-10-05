@@ -21,18 +21,20 @@ npm run build      # out/ に静的ファイルを書き出します
 npm run test:e2e   # out/ を配信して、アクセシビリティと画面幅を確認します
 ```
 
-## 公開（Vercel）
+## 公開（GitHub Pages）
 
-1. Google フォームを作り、共有用のURL（`https://forms.gle/...`）を控えます。
-2. Vercel でこのリポジトリをインポートします（フレームワークは Next.js）。
-3. 環境変数を設定してデプロイします。
+`main` に push すると `.github/workflows/pages.yml` がビルドして GitHub Pages に公開します。URLは `https://taboki1100.github.io/taboki-dev/` です。
 
-   | 変数 | 値 |
-   | --- | --- |
-   | `NEXT_PUBLIC_CONTACT_FORM_URL` | Google フォームのURL |
-   | `NEXT_PUBLIC_SITE_URL` | サイトのURL（例: `https://taboki-dev.vercel.app`） |
+最初に一度だけ設定します。
 
-フォームのURLを入れないと、「相談する」ボタンは「相談フォームは準備中です」と表示されます。
+1. GitHub Pages は無料プランだと**公開リポジトリ**でしか使えません。Settings → General → Danger Zone → Change visibility で Public にします（ソースに秘密情報はありません）。
+2. Settings → Pages → Build and deployment の Source を **GitHub Actions** にします。
+3. Settings → Secrets and variables → Actions → **Variables** に `CONTACT_FORM_URL`（Google フォームのURL）を追加します。
+4. Actions タブで「Deploy to GitHub Pages」を Run workflow するか、何か push します。
+
+フォームのURLがないと、「相談する」ボタンは「相談フォームは準備中です」と表示されます。
+
+独自ドメインを使う場合は、Settings → Pages で Custom domain を設定し、Variables に `SITE_URL`（例: `https://taboki.dev`）を追加します。ドメイン直下で配信されるようにビルドが切り替わります。
 
 ## 技術
 
